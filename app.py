@@ -8,7 +8,7 @@ def home():
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PawCare - Dog Website</title>
+    <title>Angel Paws - Dog Website</title>
 
     <style>
         * {
@@ -23,6 +23,7 @@ def home():
             color: #263238;
         }
 
+        /* Navigation Bar */
         nav {
             background: white;
             padding: 20px 8%;
@@ -48,6 +49,11 @@ def home():
             font-size: 16px;
         }
 
+        nav a:hover {
+            color: #c45b25;
+        }
+
+        /* Hero Section */
         .hero {
             min-height: 500px;
             display: flex;
@@ -58,6 +64,13 @@ def home():
 
         .hero-text {
             width: 50%;
+        }
+
+        .hero-text .small-title {
+            font-size: 15px;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
 
         .hero-text h1 {
@@ -85,6 +98,11 @@ def home():
             font-weight: bold;
         }
 
+        .button:hover {
+            background: #9f461d;
+        }
+
+        /* Dog Image */
         .dog {
             width: 50%;
             text-align: center;
@@ -96,6 +114,7 @@ def home():
             border-radius: 25px;
         }
 
+        /* Why Dogs Section */
         .section {
             padding: 60px 8%;
             text-align: center;
@@ -120,6 +139,10 @@ def home():
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
 
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
         .card h3 {
             margin: 15px 0;
             font-size: 22px;
@@ -134,14 +157,51 @@ def home():
             font-size: 45px;
         }
 
+        /* About Section */
+        .about {
+            background: #f7eadb;
+            padding: 60px 8%;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* Footer */
         footer {
             background: #263238;
             color: white;
             text-align: center;
-            padding: 25px;
+            padding: 30px;
         }
 
+        footer h3 {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        /* Mobile */
         @media (max-width: 800px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
             .hero {
                 flex-direction: column;
                 text-align: center;
@@ -156,6 +216,10 @@ def home():
                 margin-top: 30px;
             }
 
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
             .cards {
                 flex-direction: column;
             }
@@ -165,8 +229,12 @@ def home():
 
 <body>
 
+    <!-- Navigation -->
     <nav>
-        <div class="logo">🐾 Paw<span>Care</span></div>
+
+        <div class="logo">
+            🐾 Angel<span>Paws</span>
+        </div>
 
         <div>
             <a href="/">Home</a>
@@ -174,15 +242,21 @@ def home():
             <a href="#dogs">Dogs</a>
             <a href="#contact">Contact</a>
         </div>
+
     </nav>
 
+
+    <!-- Hero Section -->
     <section class="hero">
 
         <div class="hero-text">
-            <p>HAPPIER DOGS • BRIGHTER DAYS</p>
+
+            <p class="small-title">
+                HAPPIER DOGS • BRIGHTER DAYS
+            </p>
 
             <h1>
-                Welcome to <span>PawCare</span> 🐾
+                Welcome to <span>Angel Paws</span> 🐾
             </h1>
 
             <p>
@@ -194,56 +268,91 @@ def home():
             <a class="button" href="#dogs">
                 Explore Dogs →
             </a>
+
         </div>
 
+
         <div class="dog">
-            <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80"
-                 alt="Cute Dog">
+
+            <img
+                src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80"
+                alt="Cute Dog">
+
         </div>
 
     </section>
 
 
+    <!-- Why Dogs -->
     <section class="section" id="dogs">
 
-        <h2>Why Dogs? 🐶</h2>
+        <h2>
+            Why Dogs? 🐶
+        </h2>
 
         <div class="cards">
 
             <div class="card">
+
                 <div class="icon">🐾</div>
-                <h3>Loyal Companions</h3>
+
+                <h3>
+                    Loyal Companions
+                </h3>
+
                 <p>
                     Dogs are always there for you,
                     no matter what.
                 </p>
+
             </div>
 
+
             <div class="card">
+
                 <div class="icon">❤️</div>
-                <h3>Better Health</h3>
+
+                <h3>
+                    Better Health
+                </h3>
+
                 <p>
                     Dogs can help reduce stress
                     and keep you active.
                 </p>
+
             </div>
 
+
             <div class="card">
+
                 <div class="icon">😊</div>
-                <h3>More Happiness</h3>
+
+                <h3>
+                    More Happiness
+                </h3>
+
                 <p>
                     A happy dog can brighten
                     your entire day.
                 </p>
+
             </div>
 
+
             <div class="card">
+
                 <div class="icon">🏠</div>
-                <h3>A Loving Home</h3>
+
+                <h3>
+                    A Loving Home
+                </h3>
+
                 <p>
                     Every dog deserves a safe
                     and caring home.
                 </p>
+
             </div>
 
         </div>
@@ -251,11 +360,40 @@ def home():
     </section>
 
 
+    <!-- About Section -->
+    <section class="about" id="about">
+
+        <h2>
+            About Angel Paws 🐶
+        </h2>
+
+        <p>
+            Angel Paws is a simple website created
+            for people who love dogs. Our goal is to
+            share the happiness, friendship and
+            love that dogs bring into our lives.
+        </p>
+
+    </section>
+
+
+    <!-- Footer -->
     <footer id="contact">
-        <h3>🐾 PawCare</h3>
-        <p>Dogs make life better ❤️</p>
+
+        <h3>
+            🐾 Angel Paws
+        </h3>
+
+        <p>
+            Dogs make life better ❤️
+        </p>
+
         <br>
-        <p>© 2026 PawCare. All rights reserved.</p>
+
+        <p>
+            © 2026 Angel Paws. All rights reserved.
+        </p>
+
     </footer>
 
 </body>
