@@ -8,7 +8,7 @@ def home():
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Angel Paws - Dog Website</title>
+    <title>Angeline Paws - Dog Website</title>
 
     <style>
         * {
