@@ -233,7 +233,7 @@ def home():
     <nav>
 
         <div class="logo">
-            🐾 Angel<span>Paws</span>
+            🐾 Angeline<span>Paws</span>
         </div>
 
         <div>
