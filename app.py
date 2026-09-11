@@ -1,3 +1,4 @@
+```python
 from flask import Flask
 
 app = Flask(__name__)
@@ -8,9 +9,11 @@ def home():
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Angel Paws - Dog Website</title>
+
+    <title>F1 Racing - Red Bull Racing</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -19,18 +22,22 @@ def home():
 
         body {
             font-family: Arial, sans-serif;
-            background: #fffaf5;
-            color: #263238;
+            background: #0b0f1a;
+            color: white;
         }
 
-        /* Navigation Bar */
+        /* NAVIGATION */
+
         nav {
-            background: white;
+            background: #071d49;
             padding: 20px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.4);
         }
 
         .logo {
@@ -39,157 +46,290 @@ def home():
         }
 
         .logo span {
-            color: #c45b25;
+            color: #e10600;
         }
 
         nav a {
+            color: white;
             text-decoration: none;
-            color: #333;
             margin-left: 30px;
-            font-size: 16px;
+            font-weight: bold;
+            font-size: 15px;
         }
 
         nav a:hover {
-            color: #c45b25;
+            color: #e10600;
         }
 
-        /* Hero Section */
+
+        /* HERO */
+
         .hero {
-            min-height: 500px;
+            min-height: 600px;
+            padding: 70px 8%;
             display: flex;
             align-items: center;
-            padding: 60px 8%;
-            background: #f7eadb;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #05070d 0%,
+                    #071d49 55%,
+                    #b40000 100%
+                );
         }
 
         .hero-text {
             width: 50%;
         }
 
-        .hero-text .small-title {
-            font-size: 15px;
-            letter-spacing: 3px;
+        .small-title {
+            color: #e10600;
+            letter-spacing: 4px;
             font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .hero-text h1 {
-            font-size: 55px;
             margin-bottom: 20px;
         }
 
-        .hero-text h1 span {
-            color: #c45b25;
+        .hero h1 {
+            font-size: 60px;
+            line-height: 1.1;
+            margin-bottom: 25px;
         }
 
-        .hero-text p {
-            font-size: 20px;
-            line-height: 1.6;
+        .hero h1 span {
+            color: #e10600;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #d7d7d7;
             margin-bottom: 30px;
         }
 
         .button {
             display: inline-block;
-            background: #c45b25;
+            background: #e10600;
             color: white;
             padding: 15px 30px;
-            border-radius: 30px;
+            border-radius: 5px;
             text-decoration: none;
             font-weight: bold;
+            transition: 0.3s;
         }
 
         .button:hover {
-            background: #9f461d;
+            background: #ff2b25;
+            transform: translateY(-3px);
         }
 
-        /* Dog Image */
-        .dog {
+
+        /* CAR IMAGE */
+
+        .car {
             width: 50%;
             text-align: center;
         }
 
-        .dog img {
-            width: 90%;
-            max-width: 500px;
-            border-radius: 25px;
+        .car img {
+            width: 100%;
+            max-width: 650px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
         }
 
-        /* Why Dogs Section */
+
+        /* STATS */
+
+        .stats {
+            background: #111827;
+            padding: 45px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        .stat {
+            flex: 1;
+        }
+
+        .stat h2 {
+            font-size: 40px;
+            color: #e10600;
+        }
+
+        .stat p {
+            color: #bbbbbb;
+            margin-top: 8px;
+        }
+
+
+        /* SECTION */
+
         .section {
-            padding: 60px 8%;
+            padding: 70px 8%;
             text-align: center;
         }
 
         .section h2 {
-            font-size: 40px;
-            margin-bottom: 40px;
+            font-size: 42px;
+            margin-bottom: 45px;
         }
+
+
+        /* CARDS */
 
         .cards {
             display: flex;
-            justify-content: space-between;
             gap: 25px;
         }
 
         .card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
+            background: #151b29;
+            padding: 35px;
+            border-radius: 12px;
             flex: 1;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+            border: 1px solid #252c3c;
+            transition: 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            border-color: #e10600;
+        }
+
+        .card .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
         }
 
         .card h3 {
-            margin: 15px 0;
-            font-size: 22px;
+            font-size: 23px;
+            margin-bottom: 12px;
         }
 
         .card p {
-            color: #666;
-            line-height: 1.5;
+            color: #b9b9b9;
+            line-height: 1.6;
         }
 
-        .icon {
+
+        /* DRIVER */
+
+        .driver {
+            background: #071d49;
+            padding: 70px 8%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .driver-image {
+            width: 45%;
+        }
+
+        .driver-image img {
+            width: 100%;
+            border-radius: 15px;
+        }
+
+        .driver-info {
+            width: 55%;
+        }
+
+        .driver-info h2 {
             font-size: 45px;
+            margin-bottom: 20px;
         }
 
-        /* About Section */
-        .about {
-            background: #f7eadb;
-            padding: 60px 8%;
+        .driver-info span {
+            color: #e10600;
+        }
+
+        .driver-info p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #d1d1d1;
+        }
+
+
+        /* RACE */
+
+        .race {
+            padding: 70px 8%;
+            text-align: center;
+            background: #0e1421;
+        }
+
+        .race-box {
+            max-width: 800px;
+            margin: auto;
+            background: #151b29;
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 6px solid #e10600;
+        }
+
+        .race-box h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .race-box p {
+            color: #bbbbbb;
+            font-size: 18px;
+            margin: 10px;
+        }
+
+
+        /* CHAMPIONSHIP */
+
+        .championship {
+            padding: 70px 8%;
             text-align: center;
         }
 
-        .about h2 {
+        .championship h2 {
             font-size: 40px;
             margin-bottom: 20px;
         }
 
-        .about p {
-            max-width: 800px;
+        .championship p {
+            max-width: 750px;
             margin: auto;
-            font-size: 18px;
+            color: #bbbbbb;
             line-height: 1.7;
+            font-size: 18px;
         }
 
-        /* Footer */
+
+        /* FOOTER */
+
         footer {
-            background: #263238;
-            color: white;
+            background: #05070d;
             text-align: center;
-            padding: 30px;
+            padding: 40px;
+            border-top: 1px solid #252c3c;
         }
 
         footer h3 {
-            font-size: 25px;
-            margin-bottom: 10px;
+            font-size: 27px;
+            margin-bottom: 12px;
         }
 
-        /* Mobile */
+        footer span {
+            color: #e10600;
+        }
+
+        footer p {
+            color: #999;
+        }
+
+
+        /* MOBILE */
+
         @media (max-width: 800px) {
 
             nav {
@@ -198,8 +338,7 @@ def home():
             }
 
             nav a {
-                margin-left: 10px;
-                margin-right: 10px;
+                margin: 0 8px;
             }
 
             .hero {
@@ -208,101 +347,156 @@ def home():
             }
 
             .hero-text,
-            .dog {
+            .car {
                 width: 100%;
             }
 
-            .dog {
-                margin-top: 30px;
+            .hero h1 {
+                font-size: 42px;
             }
 
-            .hero-text h1 {
-                font-size: 40px;
+            .car {
+                margin-top: 40px;
+            }
+
+            .stats {
+                flex-direction: column;
+                gap: 30px;
             }
 
             .cards {
                 flex-direction: column;
             }
+
+            .driver {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .driver-image,
+            .driver-info {
+                width: 100%;
+            }
+
         }
+
     </style>
+
 </head>
 
 <body>
 
-    <!-- Navigation -->
+
+    <!-- NAVIGATION -->
+
     <nav>
 
         <div class="logo">
-            🐾 Angel<span>Paws</span>
+            🏁 F1<span>RACING</span>
         </div>
 
         <div>
+
             <a href="/">Home</a>
-            <a href="#about">About</a>
-            <a href="#dogs">Dogs</a>
-            <a href="#contact">Contact</a>
+            <a href="#car">F1 Car</a>
+            <a href="#driver">Driver</a>
+            <a href="#race">Race</a>
+
         </div>
 
     </nav>
 
 
-    <!-- Hero Section -->
+    <!-- HERO -->
+
     <section class="hero">
 
         <div class="hero-text">
 
             <p class="small-title">
-                HAPPIER DOGS • BRIGHTER DAYS
+                FORMULA 1 • SPEED • PRECISION
             </p>
 
             <h1>
-                Welcome to <span>Angel Paws</span> 🐾
+                RACE BEYOND<br>
+                <span>THE LIMIT.</span>
             </h1>
 
             <p>
-                A small place for big dog lovers.
-                Discover cute dogs, useful tips and
-                learn how to keep them happy and healthy.
+                Experience the speed, technology and
+                adrenaline of Formula 1 racing.
+                Explore the world of high-performance
+                cars, legendary drivers and incredible races.
             </p>
 
-            <a class="button" href="#dogs">
-                Explore Dogs →
+            <a class="button" href="#car">
+                Explore F1 →
             </a>
 
         </div>
 
 
-        <div class="dog">
+        <div class="car" id="car">
 
             <img
-                src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=800&q=80"
-                alt="Cute Dog">
+                src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1000&q=80"
+                alt="Formula 1 Racing Car">
 
         </div>
 
     </section>
 
 
-    <!-- Why Dogs -->
-    <section class="section" id="dogs">
+    <!-- STATS -->
+
+    <section class="stats">
+
+        <div class="stat">
+            <h2>350+</h2>
+            <p>KM/H TOP SPEED</p>
+        </div>
+
+        <div class="stat">
+            <h2>1000+</h2>
+            <p>HORSEPOWER</p>
+        </div>
+
+        <div class="stat">
+            <h2>24</h2>
+            <p>RACES</p>
+        </div>
+
+        <div class="stat">
+            <h2>20</h2>
+            <p>DRIVERS</p>
+        </div>
+
+    </section>
+
+
+    <!-- F1 FEATURES -->
+
+    <section class="section">
 
         <h2>
-            Why Dogs? 🐶
+            The World of F1 🏎️
         </h2>
 
         <div class="cards">
 
+
             <div class="card">
 
-                <div class="icon">🐾</div>
+                <div class="icon">🏎️</div>
 
                 <h3>
-                    Loyal Companions
+                    F1 Machines
                 </h3>
 
                 <p>
-                    Dogs are always there for you,
-                    no matter what.
+                    Cutting-edge Formula 1 cars are built
+                    for incredible speed, aerodynamics
+                    and precision.
                 </p>
 
             </div>
@@ -310,15 +504,16 @@ def home():
 
             <div class="card">
 
-                <div class="icon">❤️</div>
+                <div class="icon">⚡</div>
 
                 <h3>
-                    Better Health
+                    Extreme Speed
                 </h3>
 
                 <p>
-                    Dogs can help reduce stress
-                    and keep you active.
+                    F1 cars combine powerful engines,
+                    advanced technology and lightweight
+                    construction.
                 </p>
 
             </div>
@@ -326,15 +521,15 @@ def home():
 
             <div class="card">
 
-                <div class="icon">😊</div>
+                <div class="icon">🏆</div>
 
                 <h3>
-                    More Happiness
+                    Championship
                 </h3>
 
                 <p>
-                    A happy dog can brighten
-                    your entire day.
+                    Drivers and teams compete throughout
+                    the season to become Formula 1 champions.
                 </p>
 
             </div>
@@ -342,15 +537,15 @@ def home():
 
             <div class="card">
 
-                <div class="icon">🏠</div>
+                <div class="icon">🔧</div>
 
                 <h3>
-                    A Loving Home
+                    Engineering
                 </h3>
 
                 <p>
-                    Every dog deserves a safe
-                    and caring home.
+                    Every detail matters, from aerodynamics
+                    to tyre strategy and race setup.
                 </p>
 
             </div>
@@ -360,45 +555,120 @@ def home():
     </section>
 
 
-    <!-- About Section -->
-    <section class="about" id="about">
+    <!-- DRIVER -->
+
+    <section class="driver" id="driver">
+
+        <div class="driver-image">
+
+            <img
+                src="https://images.unsplash.com/photo-1547744179-9e5f2e5c5c9d?auto=format&fit=crop&w=900&q=80"
+                alt="F1 Driver">
+
+        </div>
+
+
+        <div class="driver-info">
+
+            <h2>
+                Born to <span>Race.</span>
+            </h2>
+
+            <p>
+                Formula 1 drivers compete at the highest
+                level of motorsport. They need incredible
+                concentration, physical fitness and
+                lightning-fast reactions.
+            </p>
+
+            <br>
+
+            <p>
+                Every lap is a battle between driver,
+                machine and track.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NEXT RACE -->
+
+    <section class="race" id="race">
 
         <h2>
-            About Angel Paws 🐶
+            🏁 Race Weekend
+        </h2>
+
+        <div class="race-box">
+
+            <h2>
+                Formula 1 Grand Prix
+            </h2>
+
+            <p>
+                🌍 The Ultimate Racing Experience
+            </p>
+
+            <p>
+                🏎️ Practice • Qualifying • Race
+            </p>
+
+            <p>
+                ⚡ Speed • Strategy • Competition
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- CHAMPIONSHIP -->
+
+    <section class="championship">
+
+        <h2>
+            Chase the Championship 🏆
         </h2>
 
         <p>
-            Angel Paws is a simple website created
-            for people who love dogs. Our goal is to
-            share the happiness, friendship and
-            love that dogs bring into our lives.
+            Formula 1 is more than just speed.
+            It is a combination of engineering,
+            teamwork, strategy and driver skill.
+            Every race brings new challenges and
+            another opportunity to fight for victory.
         </p>
 
     </section>
 
 
-    <!-- Footer -->
-    <footer id="contact">
+    <!-- FOOTER -->
+
+    <footer>
 
         <h3>
-            🐾 Angel Paws
+            🏁 F1<span>RACING</span>
         </h3>
 
         <p>
-            Dogs make life better ❤️
+            Speed. Precision. Passion.
         </p>
 
         <br>
 
         <p>
-            © 2026 Angel Paws. All rights reserved.
+            © 2026 F1 Racing Fan Website
         </p>
 
     </footer>
+
 
 </body>
 </html>
 '''
 
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+```
