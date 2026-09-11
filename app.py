@@ -845,7 +845,7 @@ def home():
 
                 <div class="detail">
                     <h3>📍 LOCATION</h3>
-                    <p>Coimbatore, Tamil Nadu</p>
+                    <p>Nilgiris, Tamil Nadu</p>
                 </div>
 
                 <div class="detail">
