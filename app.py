@@ -1,24 +1,20 @@
-
 from flask import Flask
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route("/")
 def home():
     return '''
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Red Bull Racing | F1</title>
+    <title>Off-Road Riders | Adventure Bike Event</title>
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -31,118 +27,109 @@ def home():
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #050b17;
+            background: #0d0f0f;
             color: white;
         }
 
-
-        /* ================= NAVBAR ================= */
+        /* NAVIGATION */
 
         nav {
-            height: 80px;
-            background: #06101f;
+            height: 75px;
+            background: #101313;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 6%;
+            padding: 0 9%;
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #18263b;
+            border-bottom: 1px solid #292d2d;
         }
 
         .logo {
-            font-size: 25px;
-            font-weight: 900;
-            line-height: 0.9;
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
-        .logo .oracle {
-            font-size: 15px;
-            letter-spacing: 2px;
-        }
-
-        .logo .redbull {
-            color: #e30613;
-        }
-
-        .logo .racing {
-            color: #d6dce5;
-            font-size: 12px;
-            letter-spacing: 6px;
+        .logo span {
+            color: #ff7300;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 35px;
         }
 
         nav a {
             text-decoration: none;
-            color: white;
-            font-size: 14px;
+            color: #ddd;
             font-weight: bold;
-            transition: 0.3s;
+            font-size: 15px;
         }
 
         nav a:hover {
-            color: #e30613;
+            color: #ff7300;
         }
 
+        .nav-button {
+            background: #ff7300;
+            color: black !important;
+            padding: 13px 25px;
+            border-radius: 30px;
+        }
 
-        /* ================= HERO ================= */
+        /* HERO */
 
         .hero {
             min-height: 650px;
-
-            display: flex;
-            align-items: center;
-
-            padding: 70px 6%;
-
             background:
                 linear-gradient(
                     90deg,
-                    rgba(3, 8, 17, 0.98) 0%,
-                    rgba(5, 15, 30, 0.88) 42%,
-                    rgba(7, 20, 45, 0.35) 100%
+                    rgba(5, 7, 7, 0.95) 0%,
+                    rgba(5, 7, 7, 0.75) 40%,
+                    rgba(5, 7, 7, 0.2) 100%
                 ),
-                url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1800&q=90");
+                url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1800&q=90");
 
             background-size: cover;
             background-position: center;
+
+            display: flex;
+            align-items: center;
+            padding: 80px 9%;
         }
 
         .hero-content {
-            max-width: 600px;
+            max-width: 650px;
         }
 
-        .eyebrow {
-            color: #e30613;
-            font-size: 14px;
+        .small-title {
+            color: #ff7300;
             font-weight: bold;
             letter-spacing: 4px;
             margin-bottom: 20px;
+            font-size: 14px;
         }
 
         .hero h1 {
             font-size: 70px;
             line-height: 0.95;
-            font-weight: 900;
+            text-transform: uppercase;
             margin-bottom: 25px;
         }
 
         .hero h1 span {
-            color: #e30613;
+            color: #ff7300;
         }
 
         .hero p {
-            color: #d4dae3;
-            font-size: 18px;
+            color: #ddd;
+            font-size: 19px;
             line-height: 1.7;
-            max-width: 550px;
-            margin-bottom: 35px;
+            max-width: 600px;
+            margin-bottom: 30px;
         }
 
         .buttons {
@@ -150,548 +137,408 @@ def home():
             gap: 15px;
         }
 
-        .btn {
+        .button {
             display: inline-block;
-            padding: 15px 28px;
+            padding: 16px 30px;
+            background: #ff7300;
+            color: black;
             text-decoration: none;
             font-weight: bold;
-            border: 2px solid #e30613;
-            transition: 0.3s;
+            border-radius: 5px;
         }
 
-        .btn-primary {
-            background: #e30613;
+        .button:hover {
+            background: #ff8b2b;
+        }
+
+        .button-dark {
+            display: inline-block;
+            padding: 16px 30px;
+            border: 1px solid white;
             color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
         }
 
-        .btn-primary:hover {
-            background: #ff2532;
-        }
-
-        .btn-secondary {
-            color: white;
-            border-color: white;
-        }
-
-        .btn-secondary:hover {
+        .button-dark:hover {
             background: white;
-            color: #050b17;
+            color: black;
         }
 
+        /* STATS */
 
-        /* ================= PERFORMANCE BAR ================= */
-
-        .performance {
-            background: #091525;
+        .stats {
+            background: #171a1a;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            padding: 35px 6%;
-            border-bottom: 1px solid #1c2a3e;
+            padding: 35px 9%;
+            gap: 20px;
         }
 
-        .performance-box {
+        .stat {
             text-align: center;
-            border-right: 1px solid #26364d;
+            border-right: 1px solid #333;
         }
 
-        .performance-box:last-child {
+        .stat:last-child {
             border-right: none;
         }
 
-        .performance h2 {
+        .stat h2 {
+            color: #ff7300;
             font-size: 35px;
-            color: #e30613;
         }
 
-        .performance p {
-            color: #aeb8c7;
-            font-size: 13px;
-            margin-top: 8px;
-            letter-spacing: 1px;
+        .stat p {
+            color: #aaa;
+            margin-top: 7px;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 2px;
         }
 
+        /* SECTION */
 
-        /* ================= GENERAL SECTION ================= */
-
-        section {
-            padding: 80px 6%;
+        .section {
+            padding: 90px 9%;
         }
 
         .section-title {
-            margin-bottom: 45px;
+            text-align: center;
+            margin-bottom: 55px;
         }
 
         .section-title small {
-            color: #e30613;
+            color: #ff7300;
             font-weight: bold;
             letter-spacing: 3px;
         }
 
         .section-title h2 {
-            font-size: 45px;
-            margin-top: 10px;
+            font-size: 48px;
+            margin-top: 12px;
         }
 
-
-        /* ================= CAR ================= */
-
-        .car-section {
-            background: #050b17;
+        .section-title p {
+            color: #aaa;
+            max-width: 650px;
+            margin: 15px auto;
+            line-height: 1.6;
         }
 
-        .car-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .car-image {
-            width: 55%;
-        }
-
-        .car-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .car-info {
-            width: 45%;
-        }
-
-        .car-info h3 {
-            font-size: 35px;
-            margin-bottom: 20px;
-        }
-
-        .car-info p {
-            color: #b8c0cc;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .specs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .spec {
-            background: #0c1728;
-            padding: 20px;
-            border-left: 3px solid #e30613;
-        }
-
-        .spec strong {
-            display: block;
-            font-size: 23px;
-        }
-
-        .spec span {
-            color: #8f9aaa;
-            font-size: 13px;
-        }
-
-
-        /* ================= FEATURES ================= */
+        /* FEATURES */
 
         .features {
-            background: #091525;
-        }
-
-        .feature-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 25px;
         }
 
         .feature {
-            background: #0d192b;
-            padding: 30px;
-            border: 1px solid #1b2b43;
+            background: #171a1a;
+            padding: 35px 25px;
+            border-radius: 8px;
+            border: 1px solid #292d2d;
             transition: 0.3s;
         }
 
         .feature:hover {
-            transform: translateY(-7px);
-            border-color: #e30613;
+            transform: translateY(-8px);
+            border-color: #ff7300;
         }
 
-        .feature-icon {
-            font-size: 40px;
+        .feature .icon {
+            font-size: 42px;
             margin-bottom: 20px;
         }
 
         .feature h3 {
             margin-bottom: 12px;
-            font-size: 21px;
         }
 
         .feature p {
-            color: #9fa9b8;
+            color: #999;
             line-height: 1.6;
-            font-size: 15px;
         }
 
+        /* BIKE */
 
-        /* ================= DRIVERS ================= */
-
-        .drivers {
-            background: #050b17;
+        .bike-section {
+            background: #121515;
         }
 
-        .driver-grid {
+        .bike-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .driver {
-            background: #0c1728;
-            border: 1px solid #1c2b41;
-            overflow: hidden;
-        }
-
-        .driver-image {
-            height: 300px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #0a1b39,
-                    #101927
-                );
-
-            display: flex;
+            gap: 55px;
             align-items: center;
-            justify-content: center;
-
-            font-size: 100px;
         }
 
-        .driver-info {
-            padding: 25px;
+        .bike-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 10px;
         }
 
-        .driver-number {
-            color: #e30613;
-            font-size: 18px;
-            font-weight: bold;
+        .bike-info h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
         }
 
-        .driver h3 {
-            font-size: 28px;
-            margin: 8px 0;
+        .bike-info h2 span {
+            color: #ff7300;
         }
 
-        .driver p {
-            color: #9fa9b8;
-        }
-
-
-        /* ================= RACE ================= */
-
-        .race {
-            background:
-                linear-gradient(
-                    120deg,
-                    #07152c,
-                    #0a0f19
-                );
-            text-align: center;
-        }
-
-        .race-box {
-            max-width: 900px;
-            margin: auto;
-            padding: 50px;
-            border: 1px solid #26374e;
-            background: #0b1627;
-        }
-
-        .race-box h3 {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
-
-        .race-location {
-            color: #e30613;
-            font-size: 18px;
-            font-weight: bold;
+        .bike-info p {
+            color: #aaa;
+            line-height: 1.8;
             margin-bottom: 25px;
         }
 
-        .race-details {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            color: #b8c0cc;
+        .bike-specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-
-        /* ================= NEWS ================= */
-
-        .news {
-            background: #091525;
+        .spec {
+            background: #1b1f1f;
+            padding: 18px;
+            border-left: 3px solid #ff7300;
         }
 
-        .news-grid {
+        .spec strong {
+            display: block;
+            font-size: 20px;
+        }
+
+        .spec span {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* FRIENDS */
+
+        .riders {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
         }
 
-        .news-card {
-            background: #0d192b;
-            border: 1px solid #1b2b43;
+        .rider {
+            background: #171a1a;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
-        .news-top {
-            height: 180px;
-            background:
-                linear-gradient(
-                    135deg,
-                    #0d2c55,
-                    #1b1018
-                );
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            font-size: 65px;
+        .rider img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
         }
 
-        .news-content {
+        .rider-info {
             padding: 25px;
         }
 
-        .news-content small {
-            color: #e30613;
-            font-weight: bold;
+        .rider-info h3 {
+            font-size: 23px;
+            margin-bottom: 8px;
         }
 
-        .news-content h3 {
-            margin: 10px 0;
-            font-size: 21px;
+        .rider-info p {
+            color: #888;
         }
 
-        .news-content p {
-            color: #9da7b6;
-            line-height: 1.5;
+        /* EVENT */
+
+        .event {
+            background:
+                linear-gradient(rgba(8, 10, 10, 0.85), rgba(8, 10, 10, 0.9)),
+                url("https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1600&q=90");
+
+            background-size: cover;
+            background-position: center;
+            text-align: center;
         }
 
+        .event-box {
+            max-width: 850px;
+            margin: auto;
+        }
 
-        /* ================= FOOTER ================= */
+        .event h2 {
+            font-size: 55px;
+            margin-bottom: 20px;
+        }
+
+        .event h2 span {
+            color: #ff7300;
+        }
+
+        .event p {
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 35px 0;
+        }
+
+        .detail h3 {
+            color: #ff7300;
+            margin-bottom: 7px;
+        }
+
+        .detail p {
+            font-size: 15px;
+            margin: 0;
+        }
+
+        /* GALLERY */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* FOOTER */
 
         footer {
-            background: #03070e;
-            padding: 50px 6%;
-            border-top: 1px solid #1c2b40;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-logo {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .footer-logo span {
-            color: #e30613;
-        }
-
-        .social {
-            display: flex;
-            gap: 20px;
-        }
-
-        .social a {
-            color: #c3cbd6;
-            text-decoration: none;
-        }
-
-        .social a:hover {
-            color: #e30613;
-        }
-
-        .copyright {
-            margin-top: 35px;
-            color: #687487;
+            background: #080a0a;
+            padding: 45px 9%;
             text-align: center;
-            font-size: 13px;
+            border-top: 1px solid #292d2d;
         }
 
+        footer h2 {
+            margin-bottom: 12px;
+        }
 
-        /* ================= MOBILE ================= */
+        footer span {
+            color: #ff7300;
+        }
+
+        footer p {
+            color: #777;
+        }
+
+        /* MOBILE */
 
         @media (max-width: 900px) {
 
             nav {
-                padding: 15px 5%;
+                padding: 0 5%;
             }
 
             nav ul {
-                gap: 12px;
-            }
-
-            nav a {
-                font-size: 12px;
+                display: none;
             }
 
             .hero {
-                text-align: center;
-                padding: 80px 5%;
+                padding: 70px 7%;
             }
 
             .hero h1 {
                 font-size: 48px;
             }
 
-            .buttons {
-                justify-content: center;
-            }
-
-            .performance {
-                grid-template-columns: 1fr 1fr;
-                gap: 25px;
-            }
-
-            .performance-box {
-                border-right: none;
-            }
-
-            .car-container {
-                flex-direction: column;
-            }
-
-            .car-image,
-            .car-info {
-                width: 100%;
-            }
-
-            .feature-grid {
+            .stats,
+            .features {
                 grid-template-columns: 1fr 1fr;
             }
 
-            .driver-grid {
+            .bike-content {
                 grid-template-columns: 1fr;
             }
 
-            .news-grid {
+            .riders {
                 grid-template-columns: 1fr;
             }
 
-            .race-details {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 25px;
+            .gallery {
+                grid-template-columns: 1fr;
             }
         }
 
-
         @media (max-width: 600px) {
 
-            nav {
-                height: auto;
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px;
+            .stats,
+            .features {
+                grid-template-columns: 1fr;
             }
 
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid #333;
+                padding-bottom: 20px;
             }
 
             .hero h1 {
                 font-size: 40px;
             }
 
-            .hero p {
-                font-size: 16px;
+            .section-title h2,
+            .bike-info h2,
+            .event h2 {
+                font-size: 36px;
+            }
+
+            .event-details {
+                flex-direction: column;
+                gap: 20px;
             }
 
             .buttons {
                 flex-direction: column;
             }
-
-            .performance {
-                grid-template-columns: 1fr;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title h2 {
-                font-size: 35px;
-            }
-
-            .specs {
-                grid-template-columns: 1fr;
-            }
         }
 
     </style>
-
 </head>
 
-
 <body>
-
 
     <!-- NAVIGATION -->
 
     <nav>
 
         <div class="logo">
-
-            <div class="oracle">
-                ORACLE
-            </div>
-
-            <div class="redbull">
-                Red Bull
-            </div>
-
-            <div class="racing">
-                RACING
-            </div>
-
+            🏔️ OFF-ROAD <span>RIDERS</span>
         </div>
 
-
         <ul>
-
-            <li>
-                <a href="#home">HOME</a>
-            </li>
-
-            <li>
-                <a href="#car">CAR</a>
-            </li>
-
-            <li>
-                <a href="#drivers">DRIVERS</a>
-            </li>
-
-            <li>
-                <a href="#race">RACE</a>
-            </li>
-
-            <li>
-                <a href="#news">NEWS</a>
-            </li>
-
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#bike">BIKES</a></li>
+            <li><a href="#riders">RIDERS</a></li>
+            <li><a href="#gallery">GALLERY</a></li>
         </ul>
+
+        <a href="#event" class="nav-button">
+            REGISTER
+        </a>
 
     </nav>
 
@@ -702,30 +549,29 @@ def home():
 
         <div class="hero-content">
 
-            <div class="eyebrow">
-                ORACLE RED BULL RACING
+            <div class="small-title">
+                RIDE • EXPLORE • CONNECT
             </div>
 
             <h1>
-                FASTER<br>
-                STRONGER<br>
-                <span>TOGETHER.</span>
+                OFF-ROAD<br>
+                <span>BIKE EVENT</span>
             </h1>
 
             <p>
-                Welcome to the world of Formula 1.
-                Experience speed, precision, engineering
-                and the relentless pursuit of victory.
+                Get ready for an unforgettable off-road adventure.
+                Ride powerful bikes, explore challenging trails,
+                and enjoy the experience with your friends.
             </p>
 
             <div class="buttons">
 
-                <a href="#car" class="btn btn-primary">
-                    EXPLORE THE CAR →
+                <a href="#event" class="button">
+                    REGISTER NOW →
                 </a>
 
-                <a href="#drivers" class="btn btn-secondary">
-                    OUR DRIVERS
+                <a href="#bike" class="button-dark">
+                    EXPLORE BIKES
                 </a>
 
             </div>
@@ -735,105 +581,232 @@ def home():
     </section>
 
 
-    <!-- PERFORMANCE -->
+    <!-- STATS -->
 
-    <div class="performance">
+    <section class="stats">
 
-        <div class="performance-box">
-
-            <h2>350+</h2>
-            <p>KM/H TOP SPEED</p>
-
+        <div class="stat">
+            <h2>150+</h2>
+            <p>Riders</p>
         </div>
 
-
-        <div class="performance-box">
-
-            <h2>1000+</h2>
-            <p>HORSEPOWER</p>
-
+        <div class="stat">
+            <h2>50+</h2>
+            <p>Off-Road Bikes</p>
         </div>
 
-
-        <div class="performance-box">
-
-            <h2>24</h2>
-            <p>GRAND PRIX</p>
-
+        <div class="stat">
+            <h2>120 KM</h2>
+            <p>Trail Distance</p>
         </div>
 
-
-        <div class="performance-box">
-
-            <h2>2.6s</h2>
-            <p>0–100 KM/H</p>
-
+        <div class="stat">
+            <h2>2 DAYS</h2>
+            <p>Adventure</p>
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- CAR -->
+    <!-- ABOUT -->
 
-    <section class="car-section" id="car">
+    <section class="section" id="about">
 
         <div class="section-title">
 
-            <small>THE MACHINE</small>
+            <small>THE ADVENTURE</small>
 
-            <h2>Built To Dominate.</h2>
+            <h2>MORE THAN JUST A RIDE.</h2>
+
+            <p>
+                Join a community of motorcycle enthusiasts and
+                experience the thrill of riding through forests,
+                mountains, mud tracks and rocky trails.
+            </p>
 
         </div>
 
+        <div class="features">
 
-        <div class="car-container">
+            <div class="feature">
 
-            <div class="car-image">
+                <div class="icon">🏍️</div>
+
+                <h3>Real Off-Road Trails</h3>
+
+                <p>
+                    Take on challenging mountain, forest and
+                    muddy trails designed for adventure riders.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="icon">👥</div>
+
+                <h3>Ride With Friends</h3>
+
+                <p>
+                    Meet fellow riders and enjoy the adventure
+                    together as a group.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="icon">🛡️</div>
+
+                <h3>Safety First</h3>
+
+                <p>
+                    Safety equipment, experienced guides and
+                    support teams are available throughout the event.
+                </p>
+
+            </div>
+
+            <div class="feature">
+
+                <div class="icon">🏔️</div>
+
+                <h3>Explore Nature</h3>
+
+                <p>
+                    Discover beautiful landscapes and experience
+                    the outdoors from a completely different perspective.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FEATURED BIKE -->
+
+    <section class="section bike-section" id="bike">
+
+        <div class="bike-content">
+
+            <div class="bike-image">
 
                 <img
-                    src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1200&q=90"
-                    alt="Formula 1 Racing Car">
+                    src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1200&q=90"
+                    alt="Off Road Motorcycle">
+
+            </div>
+
+            <div class="bike-info">
+
+                <small class="small-title">
+                    FEATURED MACHINE
+                </small>
+
+                <h2>
+                    BUILT FOR <span>ADVENTURE.</span>
+                </h2>
+
+                <p>
+                    Modern off-road motorcycles are built to handle
+                    difficult terrain, steep climbs, muddy trails and
+                    high-speed sections while giving riders complete
+                    control.
+                </p>
+
+                <div class="bike-specs">
+
+                    <div class="spec">
+                        <strong>450cc</strong>
+                        <span>ENGINE</span>
+                    </div>
+
+                    <div class="spec">
+                        <strong>6 SPEED</strong>
+                        <span>TRANSMISSION</span>
+                    </div>
+
+                    <div class="spec">
+                        <strong>110 KG</strong>
+                        <span>LIGHTWEIGHT</span>
+                    </div>
+
+                    <div class="spec">
+                        <strong>21"</strong>
+                        <span>FRONT WHEEL</span>
+                    </div>
+
+                </div>
+
+                <a href="#event" class="button">
+                    JOIN THE EVENT
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RIDERS -->
+
+    <section class="section" id="riders">
+
+        <div class="section-title">
+
+            <small>THE COMMUNITY</small>
+
+            <h2>RIDE WITH FRIENDS.</h2>
+
+            <p>
+                Adventure becomes better when you share it
+                with people who love motorcycles as much as you do.
+            </p>
+
+        </div>
+
+        <div class="riders">
+
+            <div class="rider">
+
+                <img
+                    src="https://images.unsplash.com/photo-1558980394-0c2f3e4f1d08?auto=format&fit=crop&w=900&q=85"
+                    alt="Off Road Rider">
+
+                <div class="rider-info">
+                    <h3>Trail Riders</h3>
+                    <p>Experienced off-road enthusiasts</p>
+                </div>
 
             </div>
 
 
-            <div class="car-info">
+            <div class="rider">
 
-                <h3>
-                    Formula 1 Engineering
-                </h3>
+                <img
+                    src="https://images.unsplash.com/photo-1525160354320-d8e92641c563?auto=format&fit=crop&w=900&q=85"
+                    alt="Motorcycle Rider">
 
-                <p>
-                    Every part of an F1 car is designed
-                    around one goal — maximum performance.
-                    Aerodynamics, power, tyres and strategy
-                    work together to create one of the fastest
-                    racing machines on the planet.
-                </p>
+                <div class="rider-info">
+                    <h3>Adventure Crew</h3>
+                    <p>Friends who ride together</p>
+                </div>
+
+            </div>
 
 
-                <div class="specs">
+            <div class="rider">
 
-                    <div class="spec">
-                        <strong>1000+</strong>
-                        <span>HORSEPOWER</span>
-                    </div>
+                <img
+                    src="https://images.unsplash.com/photo-1558981280-5e63cfae1d6b?auto=format&fit=crop&w=900&q=85"
+                    alt="Motorcycle Adventure">
 
-                    <div class="spec">
-                        <strong>350+</strong>
-                        <span>KM/H</span>
-                    </div>
-
-                    <div class="spec">
-                        <strong>798 KG</strong>
-                        <span>MINIMUM WEIGHT</span>
-                    </div>
-
-                    <div class="spec">
-                        <strong>1.5G+</strong>
-                        <span>HIGH SPEED BRAKING</span>
-                    </div>
-
+                <div class="rider-info">
+                    <h3>Mountain Riders</h3>
+                    <p>Exploring new terrain</p>
                 </div>
 
             </div>
@@ -843,315 +816,91 @@ def home():
     </section>
 
 
-    <!-- FEATURES -->
+    <!-- EVENT -->
 
-    <section class="features">
+    <section class="section event" id="event">
 
-        <div class="section-title">
+        <div class="event-box">
 
-            <small>THE F1 WORLD</small>
+            <small class="small-title">
+                UPCOMING EVENT
+            </small>
 
-            <h2>More Than Racing.</h2>
+            <h2>
+                READY TO <span>RIDE?</span>
+            </h2>
 
-        </div>
+            <p>
+                Join us for two days of off-road riding,
+                mountain trails, friends, camping and
+                unforgettable motorcycle adventures.
+            </p>
 
+            <div class="event-details">
 
-        <div class="feature-grid">
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    🏎️
+                <div class="detail">
+                    <h3>📅 DATE</h3>
+                    <p>November 15–16, 2026</p>
                 </div>
 
-                <h3>
-                    Aerodynamics
-                </h3>
+                <div class="detail">
+                    <h3>📍 LOCATION</h3>
+                    <p>Coimbatore, Tamil Nadu</p>
+                </div>
 
-                <p>
-                    Advanced aerodynamic design generates
-                    downforce while keeping the car fast
-                    and efficient.
-                </p>
+                <div class="detail">
+                    <h3>🏁 TERRAIN</h3>
+                    <p>Mountain • Forest • Mud</p>
+                </div>
 
             </div>
 
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    ⚡
-                </div>
-
-                <h3>
-                    Power
-                </h3>
-
-                <p>
-                    Hybrid power units deliver incredible
-                    acceleration and performance.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    🧠
-                </div>
-
-                <h3>
-                    Strategy
-                </h3>
-
-                <p>
-                    Teams constantly analyze tyres,
-                    weather and race data to make
-                    critical decisions.
-                </p>
-
-            </div>
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    🔧
-                </div>
-
-                <h3>
-                    Pit Crew
-                </h3>
-
-                <p>
-                    A professional pit crew can change
-                    all four tyres in just a few seconds.
-                </p>
-
-            </div>
-
+            <a href="#" class="button">
+                REGISTER FOR EVENT →
+            </a>
 
         </div>
 
     </section>
 
 
-    <!-- DRIVERS -->
+    <!-- GALLERY -->
 
-    <section class="drivers" id="drivers">
-
-        <div class="section-title">
-
-            <small>THE DRIVERS</small>
-
-            <h2>Born To Race.</h2>
-
-        </div>
-
-
-        <div class="driver-grid">
-
-
-            <div class="driver">
-
-                <div class="driver-image">
-                    🏁
-                </div>
-
-                <div class="driver-info">
-
-                    <div class="driver-number">
-                        DRIVER 01
-                    </div>
-
-                    <h3>
-                        Max Verstappen
-                    </h3>
-
-                    <p>
-                        Speed. Focus. Precision.
-                        A championship-winning driver
-                        known for his aggressive racing style.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="driver">
-
-                <div class="driver-image">
-                    🏎️
-                </div>
-
-                <div class="driver-info">
-
-                    <div class="driver-number">
-                        DRIVER 11
-                    </div>
-
-                    <h3>
-                        Sergio Pérez
-                    </h3>
-
-                    <p>
-                        Experience, consistency and race
-                        craft developed through years at
-                        the highest level of motorsport.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- RACE -->
-
-    <section class="race" id="race">
+    <section class="section" id="gallery">
 
         <div class="section-title">
 
-            <small>RACE WEEKEND</small>
+            <small>EVENT GALLERY</small>
 
-            <h2>Feel The Speed.</h2>
-
-        </div>
-
-
-        <div class="race-box">
-
-            <h3>
-                FORMULA 1 GRAND PRIX
-            </h3>
-
-            <div class="race-location">
-                🏁 SPEED • STRATEGY • VICTORY
-            </div>
-
-
-            <div class="race-details">
-
-                <div>
-                    <strong>PRACTICE</strong>
-                    <br>
-                    Prepare the car
-                </div>
-
-                <div>
-                    <strong>QUALIFYING</strong>
-                    <br>
-                    Fight for pole
-                </div>
-
-                <div>
-                    <strong>RACE</strong>
-                    <br>
-                    Chase victory
-                </div>
-
-            </div>
+            <h2>LIVE THE ADVENTURE.</h2>
 
         </div>
 
-    </section>
+        <div class="gallery">
 
+            <img
+                src="https://images.unsplash.com/photo-1529422643029-d4585747aaf2?auto=format&fit=crop&w=900&q=85"
+                alt="Motorcycle">
 
-    <!-- NEWS -->
+            <img
+                src="https://images.unsplash.com/photo-1558981359-219d6364c9c8?auto=format&fit=crop&w=900&q=85"
+                alt="Adventure Bike">
 
-    <section class="news" id="news">
+            <img
+                src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=85"
+                alt="Off Road Bike">
 
-        <div class="section-title">
+            <img
+                src="https://images.unsplash.com/photo-1558980394-0c2f3e4f1d08?auto=format&fit=crop&w=900&q=85"
+                alt="Rider">
 
-            <small>LATEST</small>
+            <img
+                src="https://images.unsplash.com/photo-1525160354320-d8e92641c563?auto=format&fit=crop&w=900&q=85"
+                alt="Bike Adventure">
 
-            <h2>Inside F1.</h2>
-
-        </div>
-
-
-        <div class="news-grid">
-
-
-            <div class="news-card">
-
-                <div class="news-top">
-                    🏎️
-                </div>
-
-                <div class="news-content">
-
-                    <small>F1 TECHNOLOGY</small>
-
-                    <h3>
-                        Engineering For Speed
-                    </h3>
-
-                    <p>
-                        Discover how engineers turn
-                        advanced technology into
-                        racing performance.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="news-card">
-
-                <div class="news-top">
-                    🏆
-                </div>
-
-                <div class="news-content">
-
-                    <small>CHAMPIONSHIP</small>
-
-                    <h3>
-                        The Fight For Victory
-                    </h3>
-
-                    <p>
-                        Every point matters throughout
-                        the Formula 1 championship season.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="news-card">
-
-                <div class="news-top">
-                    ⚡
-                </div>
-
-                <div class="news-content">
-
-                    <small>RACE DAY</small>
-
-                    <h3>
-                        Speed Meets Strategy
-                    </h3>
-
-                    <p>
-                        From tyre strategy to pit stops,
-                        every decision can change a race.
-                    </p>
-
-                </div>
-
-            </div>
-
+            <img
+                src="https://images.unsplash.com/photo-1558981280-5e63cfae1d6b?auto=format&fit=crop&w=900&q=85"
+                alt="Mountain Ride">
 
         </div>
 
@@ -1162,54 +911,27 @@ def home():
 
     <footer>
 
-        <div class="footer-content">
+        <h2>
+            🏔️ OFF-ROAD <span>RIDERS</span>
+        </h2>
 
-            <div class="footer-logo">
+        <p>
+            Ride hard. Explore more. Make memories.
+        </p>
 
-                <span>RED BULL</span>
-                RACING
+        <br>
 
-            </div>
-
-
-            <div class="social">
-
-                <a href="#">
-                    YouTube
-                </a>
-
-                <a href="#">
-                    Instagram
-                </a>
-
-                <a href="#">
-                    X
-                </a>
-
-                <a href="#">
-                    Facebook
-                </a>
-
-            </div>
-
-        </div>
-
-
-        <div class="copyright">
-
-            © 2026 F1 Racing Fan Website.
-            Created for educational purposes.
-
-        </div>
+        <p>
+            © 2026 Off-Road Riders. All rights reserved.
+        </p>
 
     </footer>
 
 
 </body>
-
 </html>
 '''
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
