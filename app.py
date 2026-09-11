@@ -1,4 +1,4 @@
-```python
+
 from flask import Flask
 
 app = Flask(__name__)
@@ -403,4 +403,4 @@ def home():
         .race-box {
             max-width: 900px;
             m
-```
+
